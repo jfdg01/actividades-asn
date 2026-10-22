@@ -1,6 +1,6 @@
 ---
 title: Actividad 3.1
-subtitle: Despliegue de una arquitectura distribuida con un balanceador de carga y configuración dinámica de nodos
+subtitle: Configuración de Traefik
 comment: Aplicaciones Seguras en la Nube · Universidad de Jaén · 2026/2027
 author: Miguel Bolívar García y Javier Francisco Dibo Gómez
 logo: img/logo_uja.webp
@@ -9,7 +9,7 @@ locale: es
 
 ## Resumen
 
-Se establece una app con load balacing mediante `traefik` y se gestionan los secretos que necesitan los contenedores.
+Se establece una app con load balancing mediante `traefik` y se gestionan los secretos que necesitan los contenedores.
 
 ## Paso 1: Inicialización de la app
 
@@ -33,7 +33,7 @@ mariadb:
         - MYSQL_PASSWORD=secreto
 ```
 
-Ya que los credenciales están en texto claro en un archivo que se sube al repositorio, se migran estos valores a un archivo local secreto `.env`, y en `compose.yml` se sustituyen por la propiedad `env_file` que lee el archivo [1].
+Ya que las credenciales están en texto claro en un archivo que se sube al repositorio, se migran estos valores a un archivo local secreto `.env`, y en `compose.yml` se sustituyen por la propiedad `env_file` que lee el archivo [1].
 
 <!-- file: compose.yml -->
 <!-- caption: compose.yml configurado para leer nuestro .env -->
@@ -55,16 +55,16 @@ $dbuser = $_ENV["MYSQL_USER"];
 $dbpass = $_ENV["MYSQL_PASSWORD"];
 ```
 
-Una vez cambiados los archivos ejecutamos `docker compose up -d` para recargar los contenedores y comprobamos que efectivamente PHP se conecta a MariaDB con los credenciales del entorno.
+Una vez cambiados los archivos ejecutamos `docker compose up -d` para recargar los contenedores y comprobamos que efectivamente PHP se conecta a MariaDB con las credenciales del entorno.
 
 ![App mostrando un comportamiento correcto](img/image-2.png)
 
 ## Paso 3
 
-El paso 3 nos pide establecer un loadbalancer en la app, tal y como hicimos en los pasos de prueba, para esto copiamos el directorio `traefik` al directorio de trabajo. En el archivo `dynamic-conf.yml` cambiamos los nombres de las replicas para reflajar la webapp [2]. Después actualizamos el `compose.yml` para agregar los contenedores necesarios:
+El paso 3 nos pide establecer un loadbalancer en la app, tal y como hicimos en los pasos de prueba, para esto copiamos el directorio `traefik` al directorio de trabajo. En el archivo `dynamic-conf.yml` cambiamos los nombres de las réplicas para reflejar la webapp [2]. Después actualizamos el `compose.yml` para agregar los contenedores necesarios:
 
 <!-- file: compose.yml -->
-<!-- caption: configuración para las replicas usando traefik -->
+<!-- caption: configuración para las réplicas usando traefik -->
 ```yaml
 wwwserver:
     scale: 2
@@ -72,14 +72,14 @@ wwwserver:
         - "80"
 ...
 traefik:
-    # idem a la configuracion de loadbalancer/
+    # idem a la configuración de loadbalancer/
 ```
 
-Una vez copiada la configuración ejecutamos `docker compose up -d` y obsevamos que se lanzan correctamente:
+Una vez copiada la configuración ejecutamos `docker compose up -d` y observamos que se lanzan correctamente:
 
 ![CTOP mostrando los contenedores de la app, traefik y las réplicas](img/image-3.png)
 
-Si comprobamos nuestra app podemos ver como server y container cambian dinamicamente:
+Si comprobamos nuestra app podemos ver como server y container cambian dinámicamente:
 
 <!-- caption: input de la página mostrando el reparto de carga -->
 ```txt
