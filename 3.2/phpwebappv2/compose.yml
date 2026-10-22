@@ -1,0 +1,38 @@
+services:
+  traefik:
+    image: traefik:v3.7
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      # auto discovering of balanced nodes (docker provider)
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml
+    depends_on:
+      - wwwserver
+
+  wwwserver:
+    build: .
+    image: asn/phpwebapp:v1
+    env_file: .env
+    ports:
+      # Only the container port: docker assigns a random free host port to each replica
+      - "80"
+    volumes:
+      - ./html:/var/www/html
+    scale: 2
+    # limit resources for testing
+    cpus: .25
+    mem_limit: 48m
+    memswap_limit: 48m  # Swap not allowed if this value is equal to mem_limit
+    labels:
+      # Traefik discovers this container through the docker socket
+      - "traefik.enable=true"
+      - "traefik.http.routers.wwwserver.rule=PathPrefix(`/`)"
+      - traefik.http.services.wwwserver.loadbalancer.server.port=80
+    depends_on:
+      - mariadb
+
+  mariadb:
+    image: mariadb:latest
+    env_file: .env
