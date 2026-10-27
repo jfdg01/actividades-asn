@@ -1,0 +1,11 @@
+petición 1 a los 0.0 s: 200
+petición 2 a los 1.0 s: 200
+petición 3 a los 2.0 s: 200
+petición 4 a los 3.0 s: 200
+petición 5 a los 4.0 s: 200
+petición 6 a los 5.0 s: 200
+petición 7 a los 6.0 s: 200
+petición 8 a los 7.0 s: 200
+petición 9 a los 8.0 s: 200
+petición 10 a los 9.0 s: 200
+petición 11 a los 10.0 s: traefik responde 'Connection: close'

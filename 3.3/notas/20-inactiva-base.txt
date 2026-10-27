@@ -1,0 +1,2 @@
+200
+conexión inactiva cerrada por traefik a los 180.0 s

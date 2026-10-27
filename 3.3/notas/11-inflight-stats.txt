@@ -1,0 +1,120 @@
+[Hphpwebappv2-traefik-1 0.06% 49.5MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 0.00% 14.01MiB / 48MiB 6
+phpwebappv2-wwwserver-2 0.00% 14.36MiB / 48MiB 6
+[Hphpwebappv2-traefik-1 0.06% 49.5MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 0.00% 14.01MiB / 48MiB 6 [K
+phpwebappv2-wwwserver-2 0.00% 14.36MiB / 48MiB 6 [K
+ [K
+[J[Hphpwebappv2-traefik-1 0.06% 49.5MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 0.00% 14.01MiB / 48MiB 6
+phpwebappv2-wwwserver-2 0.00% 14.36MiB / 48MiB 6
+[Hphpwebappv2-traefik-1 0.06% 49.5MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 0.00% 14.01MiB / 48MiB 6 [K
+phpwebappv2-wwwserver-2 0.00% 14.36MiB / 48MiB 6 [K
+ [K
+[J[Hphpwebappv2-traefik-1 229.27% 47.3MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 23.71% 19.3MiB / 48MiB 7
+phpwebappv2-wwwserver-2 24.02% 18.5MiB / 48MiB 6
+[Hphpwebappv2-traefik-1 229.27% 47.3MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 23.71% 19.3MiB / 48MiB 7 [K
+phpwebappv2-wwwserver-2 24.02% 18.5MiB / 48MiB 6 [K
+ [K
+[J[Hphpwebappv2-traefik-1 229.27% 47.3MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 23.71% 19.3MiB / 48MiB 7
+phpwebappv2-wwwserver-2 24.02% 18.5MiB / 48MiB 6
+[Hphpwebappv2-traefik-1 229.27% 47.3MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 23.71% 19.3MiB / 48MiB 7 [K
+phpwebappv2-wwwserver-2 24.02% 18.5MiB / 48MiB 6 [K
+ [K
+[J[Hphpwebappv2-traefik-1 303.56% 47.33MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 27.07% 21.11MiB / 48MiB 9
+phpwebappv2-wwwserver-2 26.56% 18.93MiB / 48MiB 7
+[Hphpwebappv2-traefik-1 303.56% 47.33MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 27.07% 21.11MiB / 48MiB 9 [K
+phpwebappv2-wwwserver-2 26.56% 18.93MiB / 48MiB 7 [K
+ [K
+[J[Hphpwebappv2-traefik-1 303.56% 47.33MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 27.07% 21.11MiB / 48MiB 9
+phpwebappv2-wwwserver-2 26.56% 18.93MiB / 48MiB 7
+[Hphpwebappv2-traefik-1 303.56% 47.33MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 27.07% 21.11MiB / 48MiB 9 [K
+phpwebappv2-wwwserver-2 26.56% 18.93MiB / 48MiB 7 [K
+ [K
+[J[Hphpwebappv2-traefik-1 304.36% 46.14MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 27.08% 25.75MiB / 48MiB 13
+phpwebappv2-wwwserver-2 25.70% 21.65MiB / 48MiB 9
+[Hphpwebappv2-traefik-1 304.36% 46.14MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 27.08% 25.75MiB / 48MiB 13 [K
+phpwebappv2-wwwserver-2 25.70% 21.65MiB / 48MiB 9 [K
+ [K
+[J[Hphpwebappv2-traefik-1 304.36% 46.14MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 27.08% 25.75MiB / 48MiB 13
+phpwebappv2-wwwserver-2 25.70% 21.65MiB / 48MiB 9
+[Hphpwebappv2-traefik-1 304.36% 46.14MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 27.08% 25.75MiB / 48MiB 13 [K
+phpwebappv2-wwwserver-2 25.70% 21.65MiB / 48MiB 9 [K
+ [K
+[J[Hphpwebappv2-traefik-1 300.21% 46.99MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.31% 33.5MiB / 48MiB 21
+phpwebappv2-wwwserver-2 24.36% 24.92MiB / 48MiB 13
+[Hphpwebappv2-traefik-1 300.21% 46.99MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.31% 33.5MiB / 48MiB 21 [K
+phpwebappv2-wwwserver-2 24.36% 24.92MiB / 48MiB 13 [K
+ [K
+[J[Hphpwebappv2-traefik-1 300.21% 46.99MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.31% 33.5MiB / 48MiB 21
+phpwebappv2-wwwserver-2 24.36% 24.92MiB / 48MiB 13
+[Hphpwebappv2-traefik-1 300.21% 46.99MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.31% 33.5MiB / 48MiB 21 [K
+phpwebappv2-wwwserver-2 24.36% 24.92MiB / 48MiB 13 [K
+ [K
+[J[Hphpwebappv2-traefik-1 299.86% 47.96MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 27.02% 37.32MiB / 48MiB 31
+phpwebappv2-wwwserver-2 24.39% 25.95MiB / 48MiB 13
+[Hphpwebappv2-traefik-1 299.86% 47.96MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 27.02% 37.32MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 24.39% 25.95MiB / 48MiB 13 [K
+ [K
+[J[Hphpwebappv2-traefik-1 299.86% 47.96MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 27.02% 37.32MiB / 48MiB 31
+phpwebappv2-wwwserver-2 24.39% 25.95MiB / 48MiB 13
+[Hphpwebappv2-traefik-1 299.86% 47.96MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 27.02% 37.32MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 24.39% 25.95MiB / 48MiB 13 [K
+ [K
+[J[Hphpwebappv2-traefik-1 302.43% 49.55MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.70% 40.11MiB / 48MiB 31
+phpwebappv2-wwwserver-2 25.64% 27.48MiB / 48MiB 14
+[Hphpwebappv2-traefik-1 302.43% 49.55MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.70% 40.11MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 25.64% 27.48MiB / 48MiB 14 [K
+ [K
+[J[Hphpwebappv2-traefik-1 302.43% 49.55MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.70% 40.11MiB / 48MiB 31
+phpwebappv2-wwwserver-2 25.64% 27.48MiB / 48MiB 14
+[Hphpwebappv2-traefik-1 302.43% 49.55MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.70% 40.11MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 25.64% 27.48MiB / 48MiB 14 [K
+ [K
+[J[Hphpwebappv2-traefik-1 297.94% 50.62MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.65% 42.08MiB / 48MiB 31
+phpwebappv2-wwwserver-2 25.20% 28.97MiB / 48MiB 16
+[Hphpwebappv2-traefik-1 297.94% 50.62MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.65% 42.08MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 25.20% 28.97MiB / 48MiB 16 [K
+ [K
+[J[Hphpwebappv2-traefik-1 297.94% 50.62MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.65% 42.08MiB / 48MiB 31
+phpwebappv2-wwwserver-2 25.20% 28.97MiB / 48MiB 16
+[Hphpwebappv2-traefik-1 297.94% 50.62MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.65% 42.08MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 25.20% 28.97MiB / 48MiB 16 [K
+ [K
+[J[Hphpwebappv2-traefik-1 299.61% 49.23MiB / 31.26GiB 23
+phpwebappv2-wwwserver-1 26.50% 43.99MiB / 48MiB 31
+phpwebappv2-wwwserver-2 25.42% 30.67MiB / 48MiB 20
+[Hphpwebappv2-traefik-1 299.61% 49.23MiB / 31.26GiB 23 [K
+phpwebappv2-wwwserver-1 26.50% 43.99MiB / 48MiB 31 [K
+phpwebappv2-wwwserver-2 25.42% 30.67MiB / 48MiB 20 [K
+ [K
+[J

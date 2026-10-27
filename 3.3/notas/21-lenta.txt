@@ -1,0 +1,1 @@
+petición lenta cortada por traefik a los 10.0 s

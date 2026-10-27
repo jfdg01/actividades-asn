@@ -1,0 +1,2 @@
+DOWN tras 7 s
+UP tras 3 s

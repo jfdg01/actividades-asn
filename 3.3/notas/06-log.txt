@@ -1,0 +1,1 @@
+2026-10-27T16:09:27Z WRN Health check failed. error="checking HTTP health: HTTP request failed: Get \"http://172.19.0.4:80/\": context deadline exceeded" serviceName=wwwserver@docker targetURL=http://172.19.0.4:80

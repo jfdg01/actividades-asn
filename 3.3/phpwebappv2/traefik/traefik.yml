@@ -1,0 +1,30 @@
+# Traefik config file (yaml version)
+# Enable api console on url http://localhost:8080
+api:
+  insecure: true
+  dashboard: true
+  debug: true
+
+log:
+  level: INFO # DEBUG 
+
+accessLog: {} # Show http requests
+
+providers:
+#  file: #back-end static servers configuration
+#    filename: /etc/traefik/dynamic-conf.yml
+  docker: # enable docker dynamic container detection
+    exposedByDefault: false  # Process only containers with label "traefik.enable=true"
+
+# configure incoming conections
+entrypoints: 
+  web:
+    address: :80
+    transport:
+      # tiempo máximo de una conexión: después, traefik responde con "Connection: close"
+      keepAliveMaxTime: 10s
+      respondingTimeouts:
+        # tiempo máximo para leer una petición entera (por defecto 60s)
+        readTimeout: 10s
+        # cierre de una conexión keep-alive inactiva (por defecto 180s)
+        idleTimeout: 5s

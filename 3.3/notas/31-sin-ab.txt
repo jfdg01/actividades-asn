@@ -1,0 +1,43 @@
+This is ApacheBench, Version 2.3 <$Revision: 1934973 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking traefik (be patient)
+Finished 17785 requests
+
+
+Server Software:        Apache/2.4.69
+Server Hostname:        traefik
+Server Port:            80
+
+Document Path:          /
+Document Length:        622 bytes
+
+Concurrency Level:      50
+Time taken for tests:   20.069 seconds
+Complete requests:      17785
+Failed requests:        0
+Total transferred:      14210392 bytes
+HTML transferred:       11062270 bytes
+Requests per second:    886.19 [#/sec] (mean)
+Time per request:       56.421 [ms] (mean)
+Time per request:       1.128 [ms] (mean, across all concurrent requests)
+Transfer rate:          691.48 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    0   0.3      0       2
+Processing:     1   50 284.9      1    5588
+Waiting:        1   50 284.8      1    5588
+Total:          1   50 284.8      2    5588
+
+Percentage of the requests served within a certain time (ms)
+  50%      2
+  66%      3
+  75%     28
+  80%     89
+  90%     97
+  95%    167
+  98%    197
+  99%    294
+ 100%   5588 (longest request)
