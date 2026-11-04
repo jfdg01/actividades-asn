@@ -13,10 +13,12 @@ spec:
     metadata:
       labels:
         run: wwwserver
+        app: asn-app
+        role: wwwserver
     spec:
       containers:
       - name: phpwebapp
-        image: asn/phpwebapp:v1
+        image: jfdg0002/phpwebapp:v1
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
@@ -42,10 +44,10 @@ spec:
         resources:
           requests:
             memory: "64Mi"
-            cpu: "100m"
+            cpu: "50m"
           limits:
             memory: "256Mi"
-            cpu: "1000m"
+            cpu: "100m"
 ---
 apiVersion: v1
 kind: Service

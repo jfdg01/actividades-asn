@@ -1,0 +1,19 @@
+## MariaDB: solo los frontales entran, y solo al puerto 3306
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: asn-database
+spec:
+  podSelector:
+    matchLabels:
+      role: database
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: wwwserver
+    ports:
+    - protocol: TCP
+      port: 3306
