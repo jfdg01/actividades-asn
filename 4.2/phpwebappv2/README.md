@@ -102,9 +102,34 @@ kubectl rollout restart deployment wwwserver mariadb
 
 La base de datos no tiene volumen persistente: si se recrea el pod de MariaDB, se pierden las notas añadidas.
 
+## Despliegue en GKE
+
+El clúster sigue el apéndice del tema 4 y gasta lo mínimo: zonal, un solo nodo `e2-medium` Spot y un disco estándar de 20 GB. GCP puede parar un nodo Spot. GKE lo recrea en unos minutos, y las notas se pierden.
+
+```bash
+gcloud services enable container.googleapis.com --project=asn2026-javier-dibo
+gcloud container clusters create asn-cluster --project=asn2026-javier-dibo \
+  --zone us-central1-a --num-nodes 1 --machine-type e2-medium --spot \
+  --disk-type pd-standard --disk-size 20 --enable-dataplane-v2 \
+  --monitoring=SYSTEM,STORAGE,POD,DEPLOYMENT,DAEMONSET,CADVISOR,KUBELET
+gcloud container clusters get-credentials asn-cluster --zone us-central1-a --project=asn2026-javier-dibo
+```
+
+Dataplane V2 aplica las NetworkPolicies. Después se sigue el paso 2, sin Traefik: el Ingress de GKE crea un balanceador de GCP con IP pública en 2 a 5 minutos.
+
+```bash
+kubectl get ingress lb-ingress -w
+kubectl port-forward service/wwwserver 8080:80
+```
+
+`kubectl config use-context kind-asn` vuelve al clúster local.
+
 ## Eliminar el despliegue
+
+Borra el Ingress antes que el clúster. Un clúster borrado con su Ingress puede dejar el balanceador vivo, y el balanceador sigue cobrando.
 
 ```bash
 kubectl delete -f k8s/network-policy/ -f k8s/
 kubectl delete secret db-credentials
+gcloud container clusters delete asn-cluster --zone us-central1-a --project=asn2026-javier-dibo
 ```
