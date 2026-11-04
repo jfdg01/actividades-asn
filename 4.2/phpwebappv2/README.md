@@ -59,17 +59,23 @@ Cada pod lleva la etiqueta `app: asn-app` y una etiqueta `role`: `role: wwwserve
 | `3_wwwserver-network-policy.yml` | `role: wwwserver` | 80/TCP desde cualquier origen | pods `role: database` |
 | `4_database-network-policy.yml` | `role: database` | 3306/TCP solo desde `role: wwwserver` | — |
 
-Las reglas 1 y 2 son las del repositorio asnwebapps. La entrada de los frontales admite cualquier origen, porque Traefik y el balanceador de GKE están fuera de la aplicación.
+Las reglas 1 y 2 parten de las del repositorio asnwebapps, con dos cambios:
+
+- La regla 1 declara `policyTypes: [Ingress, Egress]`. Sin esa línea, Kubernetes ignora un `egress: []` vacío, y la regla no corta la salida.
+- La regla 2 deja pasar el DNS también hacia los pods `k8s-app: node-local-dns`. GKE con Dataplane V2 activa NodeLocal DNSCache, una caché de DNS en cada nodo, y cada pod pregunta a esa caché. Sin ese destino, un frontal no encuentra `mariadb` en GKE.
+
+La entrada de los frontales admite cualquier origen, porque Traefik y el balanceador de GKE están fuera de la aplicación.
 
 Comprobación desde un pod de prueba sin la etiqueta `app: asn-app`:
 
 ```bash
 kubectl run --rm -it test-pod --image busybox -- sh
 nc -zvw 2 wwwserver 80
+nc -zvw 2 wwwserver 443
 nc -zvw 2 mariadb 3306
 ```
 
-El puerto 80 responde, y el 3306 no. Un frontal no sale a Internet: `curl -vm 2 https://www.ujaen.es` falla dentro de su pod.
+El puerto 80 responde, y el 443 y el 3306 no. Un frontal no sale a Internet: `curl -vm 2 https://www.ujaen.es` falla dentro de su pod.
 
 ## Configuración
 
@@ -86,7 +92,7 @@ El puerto 80 responde, y el 3306 no. Un frontal no sale a Internet: `curl -vm 2 
 | phpwebapp (cada réplica) | 50m / 64Mi | 100m / 256Mi |
 | mariadb | 50m / 128Mi | 150m / 256Mi |
 
-Los límites de CPU caben en el único nodo de GKE junto a los pods del sistema.
+Son los valores que propone el enunciado. Kubernetes coloca un pod según sus requests, y los requests caben en el único nodo de GKE junto a los pods del sistema.
 
 Los dos contenedores declaran `securityContext.allowPrivilegeEscalation: false`.
 
@@ -115,7 +121,7 @@ gcloud container clusters create asn-cluster --project=asn2026-javier-dibo \
 gcloud container clusters get-credentials asn-cluster --zone us-central1-a --project=asn2026-javier-dibo
 ```
 
-Dataplane V2 aplica las NetworkPolicies. Después se sigue el paso 2, sin Traefik: el Ingress de GKE crea un balanceador de GCP con IP pública en 2 a 5 minutos.
+Dataplane V2 aplica las NetworkPolicies. Después se sigue el paso 2, sin Traefik: el Ingress de GKE crea un balanceador de GCP con IP pública en 2 a 5 minutos. El clúster sigue vivo hasta que el profesor revisa esa URL.
 
 ```bash
 kubectl get ingress lb-ingress -w
