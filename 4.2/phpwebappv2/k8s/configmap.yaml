@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: phpwebapp-config
+data:
+  DB_DSN: "mysql:host=mariadb;dbname=notesdb"
+  DB_NAME: "notesdb"
+  MYSQL_USER: "usuario"

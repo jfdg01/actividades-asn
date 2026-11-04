@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wwwserver
+  labels:
+    run: wwwserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: wwwserver
+  template:
+    metadata:
+      labels:
+        run: wwwserver
+    spec:
+      containers:
+      - name: phpwebapp
+        image: asn/phpwebapp:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+        - name: DB_DSN
+          valueFrom:
+            configMapKeyRef:
+              name: phpwebapp-config
+              key: DB_DSN
+        - name: MYSQL_USER
+          valueFrom:
+            configMapKeyRef:
+              name: phpwebapp-config
+              key: MYSQL_USER
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-credentials
+              key: MYSQL_PASSWORD
+        securityContext:
+          allowPrivilegeEscalation: false
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wwwserver
+  labels:
+    run: wwwserver
+spec:
+  type: NodePort
+  selector:
+    run: wwwserver
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
