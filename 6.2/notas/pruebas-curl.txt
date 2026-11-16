@@ -33,12 +33,54 @@ body {
 192.168.99.100:3000
 192.168.99.100:4200
 
+## Dónde están las direcciones privadas en la configuración
+config.application.googleOauth.authorizedRedirects tiene 13 entradas:
+[9]  {'uri': 'http://192.168.99.100:3000', 'proxy': 'https://localmac.owasp-juice.shop'}
+[10] {'uri': 'http://192.168.99.100:4200', 'proxy': 'https://localmac.owasp-juice.shop'}
+IP del contenedor juice-shop (docker inspect): 172.17.0.2
+Las dos direcciones son valores por defecto de Juice Shop, no del despliegue.
+
+## Qué contiene la configuración pública
+Claves de config: server, application, challenges, hackingInstructor, products, memories, ctf
+application tiene 21 claves: domain, name, logo, favicon, theme, showVersionNumber,
+showGitHubLinks, localBackupEnabled, numberOfRandomFakeUsers, altcoinName,
+privacyContactEmail, customMetricsPrefix, chatBot, social, recyclePage, welcomeBanner,
+cookieConsent, securityTxt, promotion, easterEggPlanet, googleOauth
+products: 56 entradas; memories: 9 entradas
+
+## ¿El frontend usa la configuración sin sesión?
+grep -o 'getApplicationConfiguration()' main.js | wc -l -> 18
+main.js lee welcomeBanner y welcomeBannerStatus: el banner de bienvenida sale antes del login.
+La ruta es pública por diseño: exigir rol de administrador rompe la web.
+
 ## Peticion a /ftp
 200
+
 ## Cabeceras de socket.io (alertas de X-Frame-Options y X-Content-Type-Options)
-HTTP/1.1 400 Bad Request
-Access-Control-Allow-Origin: http://localhost:4200
-Content-Type: application/json
+Las alertas de ZAP son de GET y POST a /socket.io/?EIO=4&transport=polling&...&sid=...
+Repetición con un sid nuevo:
+GET  /socket.io/?EIO=4&transport=polling
+  -> HTTP/1.1 200 OK, Content-Type: text/plain; charset=UTF-8
+     cuerpo: 0{"sid":"1mlU4BPmYXWs35ghAAAB","upgrades":["websocket"],...}
+POST /socket.io/?EIO=4&transport=polling&sid=<sid>, cuerpo 40
+  -> HTTP/1.1 200 OK, Content-Type: text/html, cuerpo: ok
+     sin X-Frame-Options y sin X-Content-Type-Options
+GET  /socket.io/?EIO=4&transport=polling&sid=<sid>
+  -> HTTP/1.1 200 OK, Content-Type: text/plain; charset=UTF-8, sin X-Content-Type-Options
+Las cabeceras faltan de verdad. El cuerpo es fijo (ok) o un paquete de Engine.IO,
+sin datos del usuario: no hay página que enmarcar ni contenido que el navegador pueda reinterpretar.
+
+## CORS con un origen externo (Origin: https://atacante.example)
+GET /rest/products/search?q= -> 200, Access-Control-Allow-Origin: *
+OPTIONS /rest/basket/1 (Access-Control-Request-Headers: authorization)
+  -> 204, Access-Control-Allow-Origin: *, Access-Control-Allow-Headers: authorization
+Ninguna respuesta lleva Access-Control-Allow-Credentials.
+El token vive en el localStorage de la tienda, y otro origen no lo puede leer:
+otra web solo lee los datos públicos.
+
+## SQL Injection en el login (solo el registro de ZAP)
+alerts.json: POST /rest/user/login, param email, attack ', evidence HTTP/1.1 500 Internal Server Error
+ZAP no guardó un SQLITE_ERROR para el login. No se repite a mano.
 
 ## Los números de la alerta Timestamp Disclosure en la configuración
 1:{"config":{"server":{"port":3000,"basePath":"","baseUrl":"http://localhost:3000"},"application":{"domain":"juice-sh.op","name":"OWASP Juice Shop","logo":"Juic
@@ -70,3 +112,8 @@ coupons_2013.md.bak -> 403
 ## ¿La API de usuarios exige token?
 GET /api/Users sin token -> 401
 GET /rest/admin/application-configuration sin token -> 200
+
+## Otros ficheros de /ftp
+incident-support.kdbx -> 200 application/octet-stream 3246B (base de datos de KeePass)
+legal.md -> 200 text/markdown 3047B
+package.json.bak -> 403
