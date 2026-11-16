@@ -1,0 +1,72 @@
+## Cabeceras de la página principal
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+Feature-Policy: payment 'self'
+X-Recruiting: /#/jobs
+
+## Cabeceras de /rest/products/search?q=
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: *
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+
+## Búsqueda con una comilla simple (error de SQLite)
+<html>
+  <head>
+    <meta charset='utf-8'> 
+    <title>Error: SQLITE_ERROR: near &quot;(&quot;: syntax error</title>
+    <style>* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+
+body {
+  padding: 80px 100px;
+  font: 13px "Helvetica Neue", "Lucida Grande", "Arial";
+  background: #ECE9E9 -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#ECE9E9));
+  background: #ECE9E9 -moz-linear-gradient(top, 
+
+## Configuración de la aplicación: direcciones privadas
+192.168.99.100:3000
+192.168.99.100:4200
+
+## Peticion a /ftp
+200
+## Cabeceras de socket.io (alertas de X-Frame-Options y X-Content-Type-Options)
+HTTP/1.1 400 Bad Request
+Access-Control-Allow-Origin: http://localhost:4200
+Content-Type: application/json
+
+## Los números de la alerta Timestamp Disclosure en la configuración
+1:{"config":{"server":{"port":3000,"basePath":"","baseUrl":"http://localhost:3000"},"application":{"domain":"juice-sh.op","name":"OWASP Juice Shop","logo":"Juic
+
+## Listado de /ftp
+href="acquisitions.md"
+href="announcement_encrypted.md"
+href="coupons_2013.md.bak"
+href="eastere.gg"
+href="encrypt.pyc"
+href="incident-support.kdbx"
+href="legal.md"
+href="package-lock.json.bak"
+href="package.json.bak"
+href="suspicious_errors.yml"
+
+## Contenido del JWT (cabecera y campos del payload)
+{'typ': 'JWT', 'alg': 'RS256'}
+{'id': 26, 'email': 'auditor@asn.test', 'role': 'customer', 'password': 'e9e4962bd4566ef20897f95426bb4efb', 'lastLoginIp': '0.0.0.0'}
+## Contexto de los números de Timestamp Disclosure
+://steamcommunity.com/sharedfiles/filedetails/?id=1969196030\">available for Tab
+://steamcommunity.com/sharedfiles/filedetails/?id=1970691216\">available for Tab
+
+## Descarga directa desde /ftp
+acquisitions.md -> 200
+package.json.bak -> 403
+coupons_2013.md.bak -> 403
+
+## ¿La API de usuarios exige token?
+GET /api/Users sin token -> 401
+GET /rest/admin/application-configuration sin token -> 200
