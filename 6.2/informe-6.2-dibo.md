@@ -5,10 +5,10 @@ comment: Aplicaciones Seguras en la Nube · Universidad de Jaén · 2026/2027
 author: Javier Francisco Dibo Gómez
 logo: img/logo_uja.webp
 locale: es
-cover: false
-toc: false
-figure_index: false
-table_index: false
+cover: true
+toc: true
+figure_index: true
+table_index: true
 ---
 
 ## Resumen
@@ -17,7 +17,7 @@ Auditoría dinámica de OWASP Juice Shop 20.4.0 con el escáner automático de Z
 
 ## Resumen ejecutivo
 
-La tienda tiene un fallo grave: el buscador de productos y el formulario de inicio de sesión copian lo que escribe el usuario dentro de una consulta a la base de datos. Un atacante puede aprovecharlo para leer datos de clientes o alterarlos, y un mensaje de error le enseña la consulta completa. Hay otros cuatro problemas menores: una URL de administración abre sin contraseña, la sesión del usuario queda al alcance de un script malicioso, y la web no limita el código del navegador ni los orígenes que la consultan. Las recomendaciones, por prioridad:
+La tienda tiene un fallo grave: el buscador de productos y el formulario de inicio de sesión copian lo que escribe el usuario dentro de una consulta a la base de datos. Un atacante puede aprovecharlo para leer datos de clientes o alterarlos, y un mensaje de error le enseña la consulta completa. Hay otros cinco problemas: una página de administración y una carpeta de ficheros internos abren sin iniciar sesión, la sesión del usuario queda al alcance de un script malicioso, y la web no limita el código del navegador ni los orígenes que la consultan. Las recomendaciones, por prioridad:
 
 1. **Ahora:** parametrizar las consultas del buscador y del login [3], [4], y devolver un error genérico.
 2. **Esta semana:** exigir rol de administrador en `/rest/admin/application-configuration` y cerrar `/ftp`.
@@ -29,7 +29,7 @@ El entorno es local: Juice Shop [2] y ZAP corren en dos contenedores de Docker. 
 
 ## Análisis técnico
 
-La [[tab-4-1]] resume las alertas reales. La inyección SQL lo es en los dos puntos: el error del buscador muestra `SELECT * FROM Products WHERE ((name LIKE '%'(%' ...`, de modo que `q` entra sin filtrar en la consulta ([[fig-4-1]]). ZAP le da confianza baja, pero el error de SQLite lo confirma.
+La [[tab-4-1]] resume las alertas reales. La inyección SQL es real en los dos puntos: el error del buscador muestra `SELECT * FROM Products WHERE ((name LIKE '%'(%' ...`, de modo que `q` entra sin filtrar en la consulta ([[fig-4-1]]). ZAP le da confianza baja, pero el error de SQLite lo confirma.
 
 <!-- caption: alertas reales tras la revisión manual -->
 
@@ -49,11 +49,15 @@ La última fila es más grave de lo que indica ZAP: `GET /api/Users` sin token d
 
 | Alerta de ZAP | Veredicto | Motivo |
 |---|---|---|
-| Timestamp Disclosure - Unix (4) | Falso positivo | `1969196030` y `1970691216` son ids de Steam, no fechas |
+| Timestamp Disclosure - Unix (4) | Falso positivo | `1969196030` y `1970691216` son identificadores de Steam, no fechas |
 | Missing Anti-clickjacking Header (3) | Falso positivo | Son respuestas de `/socket.io/`, sin HTML. La web sí envía `X-Frame-Options` |
 | X-Content-Type-Options Missing (5) | Falso positivo | Son respuestas JSON de `/socket.io/`. La web y la API sí envían `nosniff` |
 | Session ID in URL Rewrite (11) | Falso positivo | `sid` identifica el transporte de `socket.io`. La sesión va en la cabecera `Authorization` |
 | Seis alertas informativas (351) | Informativo | No son vulnerabilidades. *User Agent Fuzzer* genera 276 |
+
+## Declaración de uso de IA
+
+Se ha usado Claude para guiar el proceso y estrucutrar el informe.
 
 ## Referencias
 
