@@ -50,7 +50,7 @@ La aplicación responde en <http://localhost:8080/>.
 ## La imagen y el despliegue
 
 - Docker Hub: <https://hub.docker.com/r/jfdg0002/asn-2-4>.
-- Google Cloud: el servicio `asn-2-4` de Cloud Run, en la región `europe-west1`.
+- Google Cloud: el servicio `asn-2-4` de Cloud Run, en la región `europe-west1`. La aplicación responde en <https://asn-2-4-1046727532320.europe-west1.run.app/>.
 
 ## Referencias
 
