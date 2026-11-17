@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Medidas de seguridad en Spring Boot</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<h1>Medidas de seguridad en Spring Boot (Actividad 2.4)</h1>
+<p>Autores: Javier Francisco Dibo Gómez y Miguel Bolívar García.</p>
+
+<h2>La pila</h2>
+<ul>
+    <li>OpenJDK 21, con la imagen <code>eclipse-temurin:21-jre</code>.</li>
+    <li>Spring Boot 3.5: Spring MVC, Spring Security, Spring Data JPA y Thymeleaf.</li>
+    <li>Jakarta Bean Validation.</li>
+    <li>H2, una base de datos en memoria, con tres alumnos al arrancar.</li>
+</ul>
+
+<h2>Los ejemplos</h2>
+<p>Cada ejemplo tiene una ruta insegura y una ruta protegida, con la misma entrada.</p>
+<ol>
+    <li>Validación de datos: un formulario da de alta un alumno con un nombre, un email y una nota.
+        <a href="/ejemplo1_inseguro">Inseguro</a> · <a href="/ejemplo1_protegido">Protegido</a></li>
+    <li>Inyección SQL: un formulario busca un alumno por su nombre.
+        <a href="/ejemplo2_inseguro">Inseguro</a> · <a href="/ejemplo2_protegido">Protegido</a></li>
+    <li>XSS: un libro de comentarios muestra el texto de cada visitante.
+        <a href="/ejemplo3_inseguro">Inseguro</a> · <a href="/ejemplo3_protegido">Protegido</a></li>
+    <li>CSRF: un formulario cambia el email de contacto de la cuenta.
+        <a href="/ejemplo4_inseguro">Inseguro</a> · <a href="/ejemplo4_protegido">Protegido</a></li>
+</ol>
+
+<form th:action="@{/empezar_de_cero}" method="post">
+    <button>Empezar desde cero</button> Borra los cambios de las pruebas: los alumnos, los comentarios y los emails vuelven al estado del arranque.
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 2: inyección SQL</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<p><a href="/">Inicio</a></p>
+<h1>Ejemplo 2: inyección SQL</h1>
+<p th:if="${protegido}" class="protegido">Ruta protegida: un método de un repositorio de Spring Data JPA, con un parámetro enlazado.</p>
+<p th:unless="${protegido}" class="inseguro">Ruta insegura: la aplicación concatena el texto en una consulta de <code>JdbcTemplate</code>.</p>
+<p>Prueba el nombre <code>Ana</code>, y después el texto <code>' OR '1'='1</code>.</p>
+
+<form th:action="${protegido} ? '/ejemplo2_protegido' : '/ejemplo2_inseguro'" method="get">
+    <label>Nombre <input name="nombre" th:value="${nombre}"></label>
+    <button>Buscar</button>
+</form>
+
+<div th:if="${nombre != null}">
+    <h2 th:text="|${#lists.size(encontrados)} alumnos encontrados|"></h2>
+    <table th:unless="${encontrados.isEmpty()}">
+        <tr><th>Nombre</th><th>Email</th><th>Nota</th></tr>
+        <tr th:each="a : ${encontrados}"><td th:text="${a.nombre}"></td><td th:text="${a.email}"></td><td th:text="${a.nota}"></td></tr>
+    </table>
+</div>
+</body>
+</html>

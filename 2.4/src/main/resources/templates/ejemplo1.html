@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 1: validación de datos</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<p><a href="/">Inicio</a></p>
+<h1>Ejemplo 1: validación de datos</h1>
+<p th:if="${protegido}" class="protegido">Ruta protegida: <code>@Valid</code> con <code>@NotBlank</code>, <code>@Email</code>, <code>@Min</code> y <code>@Max</code>.</p>
+<p th:unless="${protegido}" class="inseguro">Ruta insegura: la aplicación guarda cualquier valor.</p>
+<p>Prueba una nota de 99 o un email vacío.</p>
+
+<form th:action="${protegido} ? '/ejemplo1_protegido' : '/ejemplo1_inseguro'" th:object="${alumno}" method="post">
+    <label>Nombre <input th:field="*{nombre}"></label>
+    <span class="error" th:errors="*{nombre}"></span>
+    <label>Email <input th:field="*{email}"></label>
+    <span class="error" th:errors="*{email}"></span>
+    <label>Nota <input th:field="*{nota}"></label>
+    <span class="error" th:errors="*{nota}"></span>
+    <button>Dar de alta</button>
+</form>
+
+<h2>Alumnos</h2>
+<table>
+    <tr><th>Nombre</th><th>Email</th><th>Nota</th></tr>
+    <tr th:each="a : ${alumnos}"><td th:text="${a.nombre}"></td><td th:text="${a.email}"></td><td th:text="${a.nota}"></td></tr>
+</table>
+</body>
+</html>

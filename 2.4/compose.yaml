@@ -1,0 +1,6 @@
+services:
+  app:
+    build: .
+    image: jfdg0002/asn-2-4
+    ports:
+      - "8080:8080"

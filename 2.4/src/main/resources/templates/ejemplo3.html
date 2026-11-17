@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 3: XSS</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<p><a href="/">Inicio</a></p>
+<h1>Ejemplo 3: XSS</h1>
+<p th:if="${protegido}" class="protegido">Ruta protegida: <code>th:text</code> escapa el HTML de cada comentario.</p>
+<p th:unless="${protegido}" class="inseguro">Ruta insegura: <code>th:utext</code> muestra el HTML de cada comentario tal cual.</p>
+<p>Las dos rutas leen la misma lista. Prueba el comentario <code>&lt;img src=x onerror=alert(1)&gt;</code>.</p>
+
+<form th:action="${protegido} ? '/ejemplo3_protegido' : '/ejemplo3_inseguro'" method="post">
+    <label>Comentario <input name="texto" size="50"></label>
+    <button>Publicar</button>
+</form>
+
+<h2>Comentarios</h2>
+<ul>
+    <li th:each="c : ${comentarios}">
+        <span th:if="${protegido}" th:text="${c}"></span>
+        <span th:unless="${protegido}" th:utext="${c}"></span>
+    </li>
+</ul>
+</body>
+</html>

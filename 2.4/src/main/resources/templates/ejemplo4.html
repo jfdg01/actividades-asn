@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo 4: CSRF</title>
+    <link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<p><a href="/">Inicio</a></p>
+<h1>Ejemplo 4: CSRF</h1>
+<p th:if="${protegido}" class="protegido">Ruta protegida: el formulario lleva el token oculto de Spring Security, y una petición sin el token recibe un 403.</p>
+<p th:unless="${protegido}" class="inseguro">Ruta insegura: <code>ignoringRequestMatchers</code> deja esta ruta fuera de la protección CSRF.</p>
+
+<p>Email de contacto de la cuenta: <strong th:text="${email}"></strong></p>
+
+<form th:action="${ruta}" method="post">
+    <label>Email nuevo <input name="email" type="email" required></label>
+    <button>Cambiar</button>
+</form>
+
+<p><a th:href="${protegido} ? '/ataque_csrf?ruta=protegido' : '/ataque_csrf?ruta=inseguro'">Visita la web del atacante</a>: una web externa que envía este formulario sin el token.</p>
+</body>
+</html>

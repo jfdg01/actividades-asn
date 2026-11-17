@@ -1,0 +1,8 @@
+body { font-family: system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+table { border-collapse: collapse; }
+td, th { border: 1px solid #ccc; padding: .3rem .6rem; text-align: left; }
+form { margin: 1rem 0; }
+label { display: block; margin: .4rem 0; }
+.error { color: #b00020; }
+.inseguro { color: #b00020; }
+.protegido { color: #1b5e20; }
